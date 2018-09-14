@@ -24,6 +24,8 @@ char str[20];
 void setup()
 {
     Serial.begin(115200);
+    
+    CAN.start();
 
     while (CAN_OK != CAN.begin(CAN_500KBPS))              // init can bus : baudrate = 500k
     {

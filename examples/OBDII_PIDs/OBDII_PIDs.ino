@@ -63,6 +63,8 @@ void sendPid(unsigned char __pid)
 void setup()
 {
     Serial.begin(115200);
+    CAN.start();
+    set_mask_filt();
     while (CAN_OK != CAN.begin(CAN_500KBPS))    // init can bus : baudrate = 500k
     {
         Serial.println("CAN BUS Shield init fail");
@@ -70,7 +72,6 @@ void setup()
         delay(100);
     }
     Serial.println("CAN BUS Shield init ok!");
-    set_mask_filt();
 }
 
 

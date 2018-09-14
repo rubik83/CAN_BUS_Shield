@@ -21,17 +21,8 @@ char str[20];
 void setup()
 {
     Serial.begin(115200);
-
-    while (CAN_OK != CAN.begin(CAN_500KBPS))              // init can bus : baudrate = 500k
-    {
-        Serial.println("CAN BUS Shield init fail");
-        Serial.println(" Init CAN BUS Shield again");
-        delay(100);
-    }
-    Serial.println("CAN BUS Shield init ok!");
-
-    attachInterrupt(0, MCP2515_ISR, FALLING); // start interrupt
-
+    
+    CAN.start();
 
     /*
      * set mask, set both the mask to 0x3ff
@@ -50,6 +41,18 @@ void setup()
     CAN.init_Filt(3, 0, 0x07);                          // there are 6 filter in mcp2515
     CAN.init_Filt(4, 0, 0x08);                          // there are 6 filter in mcp2515
     CAN.init_Filt(5, 0, 0x09);                          // there are 6 filter in mcp2515
+
+    while (CAN_OK != CAN.begin(CAN_500KBPS))              // init can bus : baudrate = 500k
+    {
+        Serial.println("CAN BUS Shield init fail");
+        Serial.println(" Init CAN BUS Shield again");
+        delay(100);
+    }
+    Serial.println("CAN BUS Shield init ok!");
+
+    attachInterrupt(0, MCP2515_ISR, FALLING); // start interrupt
+
+
 
 }
 

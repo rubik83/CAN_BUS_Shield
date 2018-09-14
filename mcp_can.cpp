@@ -582,7 +582,7 @@ byte MCP_CAN::mcp2515_init(const byte canSpeed, const byte clock)
 
     byte res;
 
-    mcp2515_reset();
+    // mcp2515_reset(); // do not reset here because reset cancel the filters which must be set before init
 
     res = mcp2515_setCANCTRL_Mode(MODE_CONFIG);
     if (res > 0)
@@ -884,9 +884,19 @@ void MCP_CAN::init_CS(byte _CS)
 *********************************************************************************************************/
 byte MCP_CAN::begin(byte speedset, const byte clockset)
 {
-    pSPI->begin();
+    //pSPI->begin(); // moved to MCP_CAN::start()
     byte res = mcp2515_init(speedset, clockset);
     return ((res == MCP2515_OK) ? CAN_OK : CAN_FAILINIT);
+}
+
+/*********************************************************************************************************
+** Function name:           start
+** Descriptions:            init SPI and reset can
+*********************************************************************************************************/
+void MCP_CAN::start()
+{
+ pSPI->begin();
+ mcp2515_reset();
 }
 
 /*********************************************************************************************************

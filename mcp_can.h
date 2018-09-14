@@ -125,6 +125,7 @@ public:
     byte begin(byte speedset, const byte clockset = MCP_16MHz);     // init can
     byte init_Mask(byte num, byte ext, unsigned long ulData);       // init Masks
     byte init_Filt(byte num, byte ext, unsigned long ulData);       // init filters
+    void start();													// start can
     byte sendMsgBuf(unsigned long id, byte ext, byte rtrBit, byte len, const byte *buf, bool wait_sent=true);  // send buf
     byte sendMsgBuf(unsigned long id, byte ext, byte len, const byte *buf, bool wait_sent=true);               // send buf
     byte readMsgBuf(byte *len, byte *buf);                          // read buf

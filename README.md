@@ -35,6 +35,25 @@ in Sketch -> Include Library -> CAN_BUS_Shield.  Review the included examples in
 CAN_BUS_Shield/examples.
 
 
+## Modification by Locoduino
+A problem has been detected in a can device which is starting after being connected to a working can network (hot plug) : 
+The problem is due to the fact that unwanted messages can be received before the setup of the filters, because the begin() causes a reset which delete the filters.
+Some incoming messages can be received between the begin() and the init_Filt().
+
+The solution is in this modification :
+In mcp2515_init() -> mcp2515_reset() is commented
+In begin()        -> pSPI->begin() is commented
+A new fonction start() is added.
+
+With this modification it is recommended to call the can fonctions in the setup in this order :
+
+start()
+init_Mask()
+init_Filt()
+begin()
+
+The example "set_mask_filter_recv.ino" has been modified in accordance
+
 
 ### 1. Set the BaudRate
 
