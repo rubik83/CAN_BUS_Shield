@@ -947,6 +947,7 @@ byte MCP_CAN::init_Mask(byte num, byte ext, unsigned long ulData)
     }
     else res =  MCP2515_FAIL;
 
+/*
     res = mcp2515_setCANCTRL_Mode(MODE_NORMAL);
     if (res > 0) {
 #if DEBUG_EN
@@ -956,6 +957,7 @@ byte MCP_CAN::init_Mask(byte num, byte ext, unsigned long ulData)
 #endif
         return res;
     }
+    */
 #if DEBUG_EN
     Serial.print("set Mask success!!\r\n");
 #else
@@ -1017,6 +1019,7 @@ byte MCP_CAN::init_Filt(byte num, byte ext, unsigned long ulData)
         res = MCP2515_FAIL;
     }
 
+/*
     res = mcp2515_setCANCTRL_Mode(MODE_NORMAL);
     if (res > 0)
     {
@@ -1027,6 +1030,7 @@ byte MCP_CAN::init_Filt(byte num, byte ext, unsigned long ulData)
 #endif
         return res;
     }
+  */
 #if DEBUG_EN
     Serial.print("set Filter success!!\r\n");
 #else

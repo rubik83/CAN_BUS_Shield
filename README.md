@@ -54,6 +54,10 @@ begin()
 
 The example "set_mask_filter_recv.ino" has been modified in accordance
 
+## Modification of Locoduino modification by rubik83
+
+Sometimes some filters are not enabled properly.
+The proposed solution and do not go back to normal mode (stay in config mode) at each filter setting or mask
 
 ### 1. Set the BaudRate
 
